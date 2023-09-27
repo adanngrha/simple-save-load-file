@@ -1,8 +1,8 @@
 import Canvas from "@/components/Canvas";
+import Toast from "@/components/Toast";
 import UserInput from "@/components/UserInput";
 import UserList from "@/components/UserList";
-import React, { use, useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import React, { useCallback, useEffect, useState } from "react";
 
 if (typeof document === 'undefined') {
   React.useLayoutEffect = useEffect;
@@ -35,6 +35,10 @@ export default function Home() {
     fecthData();
   } , []);
 
+  const notify = useCallback((message) => {
+    Toast({message});
+  }, []);
+
   const handleSubmit = (user) => {
     user.preventDefault();
 
@@ -49,16 +53,7 @@ export default function Home() {
     onNameChange({ target: { value: "" } });
     onAgeChange({ target: { value: "" } });
 
-    toast.success('🦄 Wow so easy!', {
-      position: "top-left",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    notify('User added!');
   }
 
   const handleChange = () => {
@@ -78,7 +73,7 @@ export default function Home() {
       }
     });
 
-    console.log('save clicked');
+    notify('Data saved!');
   }
 
   return (
