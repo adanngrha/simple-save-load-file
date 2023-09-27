@@ -9,9 +9,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "canvas": "^2.11.2",
+    "konva": "^9.2.1",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-konva": "^18.2.10",
+    "react-toastify": "^9.1.3"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.16",
