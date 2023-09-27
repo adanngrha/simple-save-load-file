@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Stage, Layer } from "react-konva";
-import DraggableRectangle from "./DraggableRectWithText";
+import RectWithText from "./RectWithText";
 
 export default function Canvas() {
   const [height, setHeight] = useState(0);
@@ -12,7 +12,7 @@ export default function Canvas() {
   return (
     <Stage width={1000} height={height}>
       <Layer>
-        <DraggableRectangle />
+        <RectWithText />
       </Layer>
     </Stage>
   );

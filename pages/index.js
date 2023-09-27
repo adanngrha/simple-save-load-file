@@ -1,8 +1,12 @@
 import Canvas from "@/components/Canvas";
 import UserInput from "@/components/UserInput";
 import UserList from "@/components/UserList";
-import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+
+if (typeof document === 'undefined') {
+  React.useLayoutEffect = useEffect;
+}
 
 export default function Home() {
   const useInput = (defaultValue = '') => {
@@ -17,56 +21,76 @@ export default function Home() {
 
   const [name, onNameChange] = useInput("");
   const [age, onAgeChange] = useInput("");
+  const [role, onRoleChange] = useInput("User");
   const [inputPage, setInputPage] = useState(true);
+  const [users, setUsers] = useState([]);
 
-  const [users, setUsers] = useState([
-    { id: 1, name: "John Doe", age: 30 },
-    { id: 2, name: "Jane Smith", age: 25 },
-    // Add more users as needed
-  ]);
+  useEffect(() => {
+    const fecthData = async () => {
+      const res = await fetch('/api/data');
+      const data = await res.json();
+      setUsers(data.users);
+    }
+
+    fecthData();
+  } , []);
 
   const handleSubmit = (user) => {
     user.preventDefault();
 
     const newUser = {
-      id: new Date().getTime(),
       name: name,
       age: age,
+      role: role,
     };
 
     setUsers([...users, newUser]);
 
-    toast.success("User added successfully!", {
-      position: toast.POSITION.TOP_CENTER,
+    onNameChange({ target: { value: "" } });
+    onAgeChange({ target: { value: "" } });
+
+    toast.success('🦄 Wow so easy!', {
+      position: "top-left",
       autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
-      className: "bg-green-500 text-white font-semibold",
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
     });
-
-    onNameChange({ target: { value: "" } });
-    onAgeChange({ target: { value: "" } });
   }
 
   const handleChange = () => {
     setInputPage(!inputPage);
   }
 
-  const handleDelete = (userId) => {
-    setUsers(users.filter((user) => user.id !== userId));
+  const handleDelete = async (name) => {
+    setUsers(users.filter((user) => user.name !== name));
   };
+
+  const handleSave = async () => {
+    await fetch('/api/data', {
+      method: 'POST',
+      body: JSON.stringify(users),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    console.log('save clicked');
+  }
 
   return (
     <>
-      <ToastContainer />
       <div className="flex">
         <div className="flex-1">
           <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             {
               inputPage ? (
-                <UserInput name={name} onNameChange={onNameChange} age={age} onAgeChange={onAgeChange} handleSubmit={handleSubmit} handleChange={handleChange} />
+                <UserInput name={name} onNameChange={onNameChange} age={age} onAgeChange={onAgeChange} role={role} onRoleChange={onRoleChange} handleSubmit={handleSubmit} handleChange={handleChange} />
               ) : (
-                <UserList users={users} onDelete={handleDelete} handleChange={handleChange} />
+                <UserList users={users} onDelete={handleDelete} handleChange={handleChange} handleSave={handleSave} />
               )
             }
           </div>

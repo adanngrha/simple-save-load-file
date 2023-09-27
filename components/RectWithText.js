@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Group, Rect, Text } from 'react-konva';
 
-export default function DraggableRectangle()  {
+export default function RectWithText()  {
 
   return (
     <Group x={25} y={25} width={130} height={45} draggable>

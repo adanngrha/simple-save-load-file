@@ -5,11 +5,11 @@ export default function UserItem({ user, onDelete }) {
     <div className="flex justify-between items-center py-2 border-b border-gray-200">
       <div>
         <p className="text-lg font-semibold">{user.name}</p>
-        <p className="text-gray-500">{user.age} years old</p>
+        <p className="text-gray-500">{user.role}, {user.age} years old</p>
       </div>
       <button
         className="text-red-500 hover:text-red-700"
-        onClick={() => onDelete(user.id)}
+        onClick={() => onDelete(user.name)}
       >
         Delete
       </button>
