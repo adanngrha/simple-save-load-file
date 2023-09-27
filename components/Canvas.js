@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Stage, Layer } from "react-konva";
 import RectWithText from "./RectWithText";
 
-export default function Canvas() {
+export default function Canvas({ users }) {
   const [height, setHeight] = useState(0);
 
   useEffect(() => {
@@ -12,7 +12,11 @@ export default function Canvas() {
   return (
     <Stage width={1000} height={height}>
       <Layer>
-        <RectWithText />
+        {
+          users.map((user) => (
+            <RectWithText key={user.name} user={user}/>
+          ))
+        }
       </Layer>
     </Stage>
   );

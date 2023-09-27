@@ -28,7 +28,7 @@ export default function UserList({ users, onDelete, handleSave, handleChange }) 
       ) : (
         <>
           {users.map((user) => (
-            <UserItem key={user.id} user={user} onDelete={onDelete} />
+            <UserItem key={user.name} user={user} onDelete={onDelete} />
           ))}
           <div>
             <button

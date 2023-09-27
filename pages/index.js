@@ -1,7 +1,7 @@
 import Canvas from "@/components/Canvas";
 import UserInput from "@/components/UserInput";
 import UserList from "@/components/UserList";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 if (typeof document === 'undefined') {
@@ -98,7 +98,7 @@ export default function Home() {
 
         <div className="flex-1">
           <div className="border-solid border-l-2 border-indigo-600">
-            <Canvas />
+            <Canvas users={users} />
           </div>
         </div>
       </div>
