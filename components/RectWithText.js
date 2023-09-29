@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Group, Rect, Text } from 'react-konva';
 
-export default function RectWithText({ user }) {
-
-  const [onDrag, setOnDrag] = React.useState(false);
+export default function RectWithText({ user, canvasWidth, canvasHeight }) {
+  const [onDrag, setOnDrag] = useState(false);
+  const [x, setX] = useState(Math.random() * canvasWidth);
+  const [y, setY] = useState(Math.random() * canvasHeight);
 
   const handleDragStart = () => {
     setOnDrag(true);
@@ -14,18 +15,18 @@ export default function RectWithText({ user }) {
   }
 
   return (
-    <Group x={25} y={25} width={110} height={40} draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+    <Group x={x} y={y} width={110} height={40} draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
       <Rect
         width={110}
-        height={40} 
-        fill={user.role === "Admin" ? "lightgreen" : "lightblue"} 
+        height={40}
+        fill={user.role === "Admin" ? "lightgreen" : "lightblue"}
         shadowColor="black"
         shadowBlur={10}
         shadowOffsetX={10}
         shadowOffsetY={10}
         shadowOpacity={0.2}
         cornerRadius={10}
-        />
+      />
       <Text
         text={`${user.name}, ${user.age} Years Old`}
         fontSize={15}
