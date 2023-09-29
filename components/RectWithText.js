@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Group, Rect, Text } from 'react-konva';
 
-export default function RectWithText({ user, canvasWidth, canvasHeight }) {
+export default function RectWithText({ user, canvasWidth, canvasHeight, handleDrag }) {
   const [onDrag, setOnDrag] = useState(false);
   const [x, setX] = useState(Math.random() * canvasWidth);
   const [y, setY] = useState(Math.random() * canvasHeight);
@@ -15,7 +15,7 @@ export default function RectWithText({ user, canvasWidth, canvasHeight }) {
   }
 
   return (
-    <Group x={x} y={y} width={110} height={40} draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+    <Group x={x} y={y} width={110} height={40} draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd} onDragMove={handleDrag}>
       <Rect
         width={110}
         height={40}
