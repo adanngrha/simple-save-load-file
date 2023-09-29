@@ -3,7 +3,7 @@ import { Stage, Layer } from "react-konva";
 import RectWithText from "./RectWithText";
 
 export default function Canvas({ users }) {
-  const [canvasWidth, setCanvasWidth] = useState(1200);
+  const [canvasWidth, setCanvasWidth] = useState(1000);
   const [canvasHeight, setCanvasHeight] = useState(0);
   const layerRef = useRef();
 
