@@ -3,7 +3,7 @@ import { Stage, Layer } from "react-konva";
 import RectWithText from "./RectWithText";
 
 export default function Canvas({ users }) {
-  const [canvasWidth, setCanvasWidth] = useState(1000);
+  const [canvasWidth, setCanvasWidth] = useState(1200);
   const [canvasHeight, setCanvasHeight] = useState(0);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ export default function Canvas({ users }) {
   }, []);
 
   return (
-    <Stage width={canvasWidth} height={canvasHeight}>
+    <Stage width={canvasWidth} height={canvasHeight} on>
       <Layer>
         {
           users.map((user) => (

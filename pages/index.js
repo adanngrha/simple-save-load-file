@@ -11,7 +11,6 @@ if (typeof document === 'undefined') {
 export default function Home() {
   const useInput = (defaultValue = '') => {
     const [value, setValue] = useState(defaultValue);
-
     const onValueChangeHandler = (event) => {
       setValue(event.target.value);
     };
@@ -56,7 +55,8 @@ export default function Home() {
     notify('User added!');
   }
 
-  const handleChange = () => {
+  const handleChange = (event) => {
+    event.preventDefault();
     setInputPage(!inputPage);
   }
 
@@ -90,7 +90,6 @@ export default function Home() {
             }
           </div>
         </div>
-
         <div className="flex-1">
           <div className="border-solid border-l-2 border-indigo-600">
             <Canvas users={users} />

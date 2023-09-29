@@ -27,9 +27,11 @@ export default function UserList({ users, onDelete, handleSave, handleChange }) 
         </>
       ) : (
         <>
-          {users.map((user) => (
-            <UserItem key={user.name} user={user} onDelete={onDelete} />
-          ))}
+          <div className="h-100 overflow-y-scroll">
+            {users.map((user) => (
+              <UserItem key={user.name} user={user} onDelete={onDelete} />
+            ))}
+          </div>
           <div>
             <button
               onClick={handleSave}
@@ -38,7 +40,6 @@ export default function UserList({ users, onDelete, handleSave, handleChange }) 
               Save
             </button>
           </div>
-
           <div>
             <button
               onClick={handleChange}
