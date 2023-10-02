@@ -32,10 +32,8 @@ export default function Home(props) {
     };
 
     setUsers([...users, newUser]);
-
     onNameChange({ target: { value: "" } });
     onAgeChange({ target: { value: "" } });
-
     notify('User added!');
   }
 

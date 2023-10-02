@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     try {
       const updatedData = JSON.stringify({
-        "users": req.body
+        "users": req.body 
       });
 
       await fsPromises.writeFile(dataPath, updatedData);

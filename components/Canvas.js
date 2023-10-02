@@ -4,7 +4,7 @@ import RectWithText from "./RectWithText";
 
 export default function Canvas({ users }) {
   const [canvasWidth, setCanvasWidth] = useState(1000);
-  const [canvasHeight, setCanvasHeight] = useState(0);
+  const [canvasHeight, setCanvasHeight] = useState(null);
   const layerRef = useRef();
 
   const handleDrag = (e) => {

@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Group, Rect, Text } from 'react-konva';
 
 export default function RectWithText({ user, canvasWidth, canvasHeight, handleDrag }) {
   const [onDrag, setOnDrag] = useState(false);
-  const [x, setX] = useState(Math.random() * canvasWidth);
-  const [y, setY] = useState(Math.random() * canvasHeight);
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
+  const width = 110;
+  const height = 40;
 
   const handleDragStart = () => {
     setOnDrag(true);
@@ -14,11 +16,16 @@ export default function RectWithText({ user, canvasWidth, canvasHeight, handleDr
     setOnDrag(false);
   }
 
+  useEffect(() => {
+    setX(Math.random() * (canvasWidth - width));
+    setY(Math.random() * (canvasHeight - height));
+  }, [canvasHeight, canvasWidth])
+
   return (
-    <Group x={x} y={y} width={110} height={40} draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd} onDragMove={handleDrag}>
+    <Group x={x} y={y} width={width} height={height} draggable onDragStart={handleDragStart} onDragEnd={handleDragEnd} onDragMove={handleDrag}>
       <Rect
-        width={110}
-        height={40}
+        width={width}
+        height={height}
         fill={user.role === "Admin" ? "lightgreen" : "lightblue"}
         shadowColor="black"
         shadowBlur={10}
@@ -32,7 +39,7 @@ export default function RectWithText({ user, canvasWidth, canvasHeight, handleDr
         fontSize={15}
         fontFamily="Calibri"
         fill="black"
-        width={110}
+        width={width}
         padding={5}
         align="center"
         data={`M0,0 L300,0`}
