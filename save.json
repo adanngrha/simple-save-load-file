@@ -1,1 +1,9 @@
-{"users":[{"name":"John Doe","age":30,"role":"Admin"},{"name":"Jane Smith","age":25,"role":"User"},{"name":"Ardan Nugraha","age":21,"role":"User"},{"name":"Hellow","age":32,"role":"User"}]}
+{
+  "users": [
+    { "name": "John Doe", "age": 30, "role": "Admin" },
+    { "name": "Jane Smith", "age": 25, "role": "User" },
+    { "name": "Ardan Nugraha", "age": 21, "role": "User" },
+    { "name": "Hellow", "age": 32, "role": "User" },
+    { "name": "Relax", "age": 31, "role": "Admin" }
+  ]
+}

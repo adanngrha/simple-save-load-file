@@ -4,27 +4,19 @@ import UserInput from "@/components/UserInput";
 import UserList from "@/components/UserList";
 import React, { useCallback, useEffect, useState } from "react";
 import useInput from "@/hooks/UseInput";
+import fsPromises from 'fs/promises';
+import path from 'path';
 
 if (typeof document === 'undefined') {
   React.useLayoutEffect = useEffect;
 }
 
-export default function Home() {
+export default function Home(props) {
   const [name, onNameChange] = useInput("");
   const [age, onAgeChange] = useInput("");
   const [role, onRoleChange] = useInput("User");
   const [inputPage, setInputPage] = useState(true);
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    const fecthData = async () => {
-      const res = await fetch('/api/data');
-      const data = await res.json();
-      setUsers(data.users);
-    }
-
-    fecthData();
-  } , []);
+  const [users, setUsers] = useState(props.users);
 
   const notify = useCallback((message) => {
     Toast({message});
@@ -90,4 +82,16 @@ export default function Home() {
       </div>
     </>
   )
+}
+
+export async function getStaticProps() {
+  const dataPath = path.join(process.cwd(), 'save.json');
+  const jsonData = await fsPromises.readFile(dataPath);
+  const objectData = JSON.parse(jsonData);
+
+  return {
+    props: {
+      users: objectData.users
+    },
+  };
 }

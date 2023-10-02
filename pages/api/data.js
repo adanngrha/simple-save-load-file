@@ -4,13 +4,6 @@ import path from 'path';
 const dataPath = path.join(process.cwd(), 'save.json');
 
 export default async function handler(req, res) {
-  if (req.method === 'GET') { 
-    const jsonData = await fsPromises.readFile(dataPath);
-    const objectData = JSON.parse(jsonData);
-
-    res.status(200).json(objectData);
-  }
-  
   if (req.method === 'POST') {
     try {
       const updatedData = JSON.stringify({
