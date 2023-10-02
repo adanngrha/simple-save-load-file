@@ -3,7 +3,7 @@ import UserItem from "./UserItem";
 
 export default function UserList({ users, onDelete, handleSave, handleChange }) {
   return (
-    <div className="p-4 sm:mx-auto sm:w-full sm:max-w-sm mt-10">
+    <div className="sm:mx-auto sm:w-full sm:max-w-sm mt-10">
       <h2 className="text-center text-2xl font-bold leading-9 tracking-tight text-gray-900 mb-5">User List</h2>
       {users.length === 0 ? (
         <>
@@ -27,7 +27,7 @@ export default function UserList({ users, onDelete, handleSave, handleChange }) 
         </>
       ) : (
         <>
-          <div className="h-100 overflow-y-scroll">
+          <div className="h-30 overflow-y-scroll">
             {users.map((user) => (
               <UserItem key={user.name} user={user} onDelete={onDelete} />
             ))}

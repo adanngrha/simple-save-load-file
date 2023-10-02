@@ -3,21 +3,13 @@ import Toast from "@/components/Toast";
 import UserInput from "@/components/UserInput";
 import UserList from "@/components/UserList";
 import React, { useCallback, useEffect, useState } from "react";
+import useInput from "@/hooks/UseInput";
 
 if (typeof document === 'undefined') {
   React.useLayoutEffect = useEffect;
 }
 
 export default function Home() {
-  const useInput = (defaultValue = '') => {
-    const [value, setValue] = useState(defaultValue);
-    const onValueChangeHandler = (event) => {
-      setValue(event.target.value);
-    };
-
-    return [value, onValueChangeHandler];
-  }
-
   const [name, onNameChange] = useInput("");
   const [age, onAgeChange] = useInput("");
   const [role, onRoleChange] = useInput("User");
@@ -43,7 +35,7 @@ export default function Home() {
 
     const newUser = {
       name: name,
-      age: age,
+      age: Number(age),
       role: role,
     };
 
